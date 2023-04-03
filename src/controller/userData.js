@@ -6,12 +6,12 @@ async function createUser(req,res){
 
     let checkEmail= await userModel.findOne({email:body.email});
     if(checkEmail){
-        return res.send({msg:"Email alredy exist"})
+        return res.status(409).send({msg:"Email alredy exist"})
     }
 
 
     let info = await userModel.create(body);
-    return res.send(info)
+    return res.status(201).send({status:true,msg:info})
 }
 
 
@@ -60,9 +60,14 @@ const loginUser =async function(req,res){
     }
     
     let token = jwt.sign({userId:checkData._id},"XYZ");
+    
+    res.cookie("UserCookie", token,{expires:new Date(Date.now()+9000000), httpOnly:true})
+
+
+    
     res.setHeader("x-api-key",token)
 
-    return res.send({msg:"Login Sucessful !",Token:token})
+    return res.status(201).send({status:true,msg:"Login Sucessful !",Token:token})
 
 }
 

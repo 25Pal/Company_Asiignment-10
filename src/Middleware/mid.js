@@ -2,6 +2,7 @@ const userModel= require("../model/user")
 const jwt = require("jsonwebtoken")
 const authentication = async function(req,res,next){
     let Token= req.headers["x-api-key"];
+    // console.log("t-"+To/ken)
     if(!Token){
         return res.send({msg:"Token is mandatory !"})
     }

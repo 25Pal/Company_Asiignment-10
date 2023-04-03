@@ -20,3 +20,7 @@ header nav h1{
 header nav .avtar{
     cursor: pointer;
 }
+
+header nav img{
+    width: 11%;
+}

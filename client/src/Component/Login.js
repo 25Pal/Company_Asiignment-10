@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./mix.css"
-import {NavLink} from "react-router-dom"
+import {NavLink , useNavigate} from "react-router-dom"
 
 
 function Login() {
@@ -13,6 +13,7 @@ function Login() {
 
     })
 
+    const history = useNavigate();
     const setVal =(e)=>{
         const {name,value}=e.target;
         setInpVal(()=>{
@@ -23,7 +24,7 @@ function Login() {
         })
     }
     
-    const loginUser = (e) => {
+    const loginUser = async (e) => {
         e.preventDefault();
         const {email, password}=inpVal;
         if(email===""){
@@ -35,7 +36,24 @@ function Login() {
         }else if(password.length < 7){
             alert("Invalid Password !")
         }else{
-            alert("Registration Done !")
+            const data= await fetch("/Login",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    email,password
+                })
+            });
+            const res = await data.json();
+            if(res.status === true){
+    
+                localStorage.setItem("UserCookieee",res.Token)
+                alert("Login Succesful !");
+                history("/Home")
+                setInpVal({...inpVal,email:"",password:""});
+            }
+
         }
 
     }

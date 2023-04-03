@@ -3,7 +3,7 @@ const userModel= require("../model/user")
 
 const createPost= async function(req,res){
     let data= req.body;
-console.log(data)
+// console.log(data)
     let info=await postModel.create(data);
     return res.send({msg:"Post Uploded sucessfully !",data:info});
 }

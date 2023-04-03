@@ -53,7 +53,11 @@ const Register = () => {
                 })
             });
             const res = await data.json();
-            console.log(res);
+            // console.log(res);
+            if(res.status === true){
+                alert("Registration Done !");
+                setInpVal({...inpVal, name:"",email:"",password:"",phone:""})
+            }
         }
 
     }

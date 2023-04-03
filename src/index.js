@@ -6,8 +6,15 @@ const app = express();
 const cors= require("cors")
 
 mongoose.set("strictQuery", true);
+
+
+const cookieParser= require("cookie-parser");
 app.use(express.json())
+app.use(cookieParser());
 app.use(cors());
+
+
+
 mongoose.connect(
     "mongodb+srv://Pal25:Pallavi2552@cluster0.hihf8kq.mongodb.net/Social_Media_DB",
     { useNewUrlParser: true }

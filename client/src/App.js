@@ -1,6 +1,6 @@
 import Header from "./Component/Header";
 import Login from "./Component/Login";
-// import Home from "./Component/Home"
+import Home from "./Component/Home"
 import Register from "./Component/Register";
 
 
@@ -14,7 +14,7 @@ function App() {
 
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        
+        <Route path="/home" element={<Home />} />
       </Routes>
 
     </>
